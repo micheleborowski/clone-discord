@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/static/js/main.5698516b.js",
+    "static/media/discord.png": "/static/media/discord.f1174c8cea4794e64dd0.png",
+    "index.html": "/index.html",
+    "main.5698516b.js.map": "/static/js/main.5698516b.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.5698516b.js"
+  ]
+}
