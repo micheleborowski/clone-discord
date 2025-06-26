@@ -1,28 +1,37 @@
 import React from 'react';
 
-import * as S from './styles';
+import {
+  Container,
+  Profile,
+  Avatar,
+  UserData,
+  Icons,
+  MicIcon,
+  HeadphoneIcon,
+  SettingsIcon
+} from './styles';
 
 import michele from "../../assets/michele.png"
 
 const UserInfo: React.FC = () => {
   return (
-    <S.Container>
-      <S.Profile>
-        <S.Avatar >
-          <img src={michele} alt="user"/>
-        </S.Avatar>
-        <S.UserData>
-          <strong>Michele Ramos</strong>
+    <Container>
+      <Profile>
+        <Avatar >
+          <img src={michele} alt="user" />
+        </Avatar>
+        <UserData>
+          <strong>Michele Borowski</strong>
           <span>#4685</span>
-        </S.UserData>
-      </S.Profile>
+        </UserData>
+      </Profile>
 
-      <S.Icons>
-        <S.MicIcon />
-        <S.HeadphoneIcon />
-        <S.SettingsIcon />
-      </S.Icons>
-    </S.Container>
+      <Icons>
+        <MicIcon />
+        <HeadphoneIcon />
+        <SettingsIcon />
+      </Icons>
+    </Container>
   );
 };
 

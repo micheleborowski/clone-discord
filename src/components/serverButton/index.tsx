@@ -1,30 +1,44 @@
 import React from "react";
-import * as S from "./styles";
+import { Button, MentionsBadge } from "./styles";
+import { Server } from "../../types";
+import discord from "../../assets/discord.png";
 
-import discord from "../../assets/discord.png"
-
-export interface Props {
-  selected?: boolean;
-  isHome?: boolean;
-  hasNotifications?: boolean;
-  mentions?: number;
+export interface ServerButtonProps {
+  server: Server;
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
-const ServerButton: React.FC<Props> = ({
-  selected,
-  isHome,
-  hasNotifications,
-  mentions,
+const ServerButton: React.FC<ServerButtonProps> = ({
+  server,
+  isSelected = false,
+  onClick,
 }) => {
+  const handleClick = () => {
+    onClick?.();
+  };
+
   return (
-    <S.Button
-      isHome={isHome}
-      hasNotifications={hasNotifications}
-      mentions={mentions}
-      className={selected ? "active" : ""}
+    <Button
+      server={server}
+      isSelected={isSelected}
+      onClick={handleClick}
+      title={server.name}
     >
-      {isHome && <img src={discord} alt="Rockeseat" />}
-    </S.Button>
+      {server.isHome ? (
+        <img src={discord} alt="Home" />
+      ) : (
+        <span className="server-initial">
+          {server.name.charAt(0).toUpperCase()}
+        </span>
+      )}
+
+      {server.mentions && server.mentions > 0 && (
+        <MentionsBadge>
+          {server.mentions > 99 ? '99+' : server.mentions}
+        </MentionsBadge>
+      )}
+    </Button>
   );
 };
 

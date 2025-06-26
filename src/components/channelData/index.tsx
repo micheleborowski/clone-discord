@@ -1,27 +1,36 @@
-import * as S from './styles';
+import React from 'react';
+import { Container, ListWrapper, DivText, Text, Separator } from './styles';
 import Search from '../search';
 import ChannelButton from '../channelButton';
-import { users } from '../../mock';
+import { useUser } from '../../contexts/UserContext';
+import { sortUsers } from '../../utils/helpers';
 
 const ChannelData: React.FC = () => {
+  const { users } = useUser();
+  const sortedUsers = sortUsers(users);
 
   return (
-    <S.Container>
+    <Container>
       <Search />
-      <S.ListWrapper>
-        <S.DivText>
-          <S.Text>
-            Todos os amigos - 3
-          </S.Text>
-        </S.DivText>
-        {users.map((user) =>
-          <>
-            <S.Separator />
-            <ChannelButton username={user.name} isOnline={user.isOnline} isChannelData={true} />
-          </>
-        )}
-      </S.ListWrapper>
-    </S.Container>
+      <ListWrapper>
+        <DivText>
+          <Text>
+            Todos os amigos - {users.length}
+          </Text>
+        </DivText>
+        {sortedUsers.map((user, index) => (
+          <React.Fragment key={user.id}>
+            {index > 0 && <Separator />}
+            <ChannelButton
+              username={user.name}
+              isOnline={user.isOnline}
+              isChannelData={true}
+              user={user}
+            />
+          </React.Fragment>
+        ))}
+      </ListWrapper>
+    </Container>
   );
 };
 

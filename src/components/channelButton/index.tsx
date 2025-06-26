@@ -1,9 +1,10 @@
 import React from "react";
-
-import * as S from "./styles";
+import { Avatar, Container, DivIcon, MessageIcon, OptionslIcon, Text } from "./styles";
+import { User } from "../../types";
 
 export interface Props {
   username: string;
+  user?: User;
 }
 
 export interface PropsContainer {
@@ -14,26 +15,32 @@ export interface PropsAvatar {
   isOnline: boolean;
 }
 
-const ChannelButton: React.FC<Props & PropsAvatar & PropsContainer> = ({ isOnline, username, isChannelData }) => {
+const ChannelButton: React.FC<Props & PropsAvatar & PropsContainer> = ({
+  isOnline,
+  username,
+  isChannelData,
+  user
+}) => {
   return (
-    <S.Container isChannelData={isChannelData}>
+    <Container isChannelData={isChannelData}>
       <div>
-        <S.Avatar isOnline={isOnline} />
+        <Avatar isOnline={isOnline} />
         <div>
-          <S.Text isChannelData={isChannelData}>{username}</S.Text>
+          <Text isChannelData={isChannelData}>{username}</Text>
         </div>
       </div>
       {isChannelData && (
         <div>
-          <S.DivIcon >
-            <S.MessageIcon />
-          </S.DivIcon>
-          <S.DivIcon >
-            <S.OptionslIcon />
-          </S.DivIcon>
+          <DivIcon >
+            <MessageIcon />
+          </DivIcon>
+          <DivIcon >
+            <OptionslIcon />
+          </DivIcon>
         </div>
       )}
-    </S.Container>
+    </Container>
   );
 };
+
 export default ChannelButton;
